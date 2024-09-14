@@ -8,6 +8,8 @@ resource "aws_instance" "instance1" {
   }
   }
 
+
+
 # to create the DNS records
 
 # resource "aws_route53_record" "appinternal" {
