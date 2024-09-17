@@ -2,6 +2,7 @@ provider "aws" {}
 provider "vault" {
     address = "https://54.160.38.144:8200"  # URL of your Vault server
     token   = "var.token"
+    tls_config {insecure = true}
 }
 
 data "vault_generic_secret" "example" {
