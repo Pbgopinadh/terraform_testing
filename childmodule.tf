@@ -6,6 +6,17 @@ resource "aws_instance" "instance1" {
   tags = {
         name  =  "${var.name}-${var.env}"
   }
+
+ connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    password = "DevOps321"
+    host     = self.public_ip
+  }
+
+  provisioner "remote-exec" {
+    inline = ["touch provsioner.txt", "cat 'this is sampple' > provsioner.txt" ]
+  }
   }
 
 
