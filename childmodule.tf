@@ -10,7 +10,7 @@ resource "aws_instance" "instance1" {
     type     = "ssh"
     user     = "ec2-user"
     password = "DevOps321"
-    host     = self.public_ip
+    host     = self.public_ip # when a provisioner is included in a instance we can just use self.public_ip to get the public ip of the instances that are going to create.
   }
 
   provisioner "remote-exec" {
@@ -25,14 +25,14 @@ resource "aws_instance" "instance1" {
     always_run = true
   }
 
-  connection {
+  connection { # this connection is used to remotly connect using SSH protocal and with user name and password.
     type     = "ssh"
     user     = "ec2-user"
     password = "DevOps321"
-    host     = aws_instance.instance1.public_ip
+    host     = aws_instance.instance1.public_ip # we dont need data.resources if its the resources that is going to be created with the current infra code.
   }
 
-  provisioner "remote-exec" {
+  provisioner "remote-exec" { # remote-exec is say that the below commands should run on the remote host.
     inline = ["touch provsioner1.txt", "echo 'this is sampple1' > provsioner1.txt" ]
   }
     
