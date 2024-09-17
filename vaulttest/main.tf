@@ -24,3 +24,9 @@ variable "token" {
     password = data.vault_generic_secret.example.data["SSH_PWD"]
     host     = aws_instance.instance1.public_ip # we dont need data.resources if its the resources that is going to be created with the current infra code.
   }
+
+   provisioner "remote-exec" { # remote-exec is say that the below commands should run on the remote host.
+    inline = ["touch provsioner1.txt", "echo 'this is sampple1' > provsioner1.txt" ]
+  }
+    
+  }
