@@ -5,7 +5,7 @@ provider "vault" {
 }
 
 data "vault_generic_secret" "example" {
-  path = "Secrets/data/sshpwd"  # Path to the secret in Vault
+  path = "/v1/kv/data/sshpwd"  # Path to the secret in Vault
 }
 
 output "my_secret_value" {
