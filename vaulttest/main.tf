@@ -10,6 +10,7 @@ data "vault_generic_secret" "example" {
 
 output "my_secret_value" {
   value = data.vault_generic_secret.example.data["SSH_PWD"]
+  sensitive = true 
 }
 
 variable "token" {
