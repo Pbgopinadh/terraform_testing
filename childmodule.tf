@@ -6,7 +6,6 @@ resource "aws_instance" "instance1" {
   tags = {
         name  =  "${var.name}-${var.env}"
   }
-
  connection {
     type     = "ssh"
     user     = "ec2-user"
@@ -15,8 +14,28 @@ resource "aws_instance" "instance1" {
   }
 
   provisioner "remote-exec" {
-    inline = ["touch provsioner.txt", "cat 'this is sampple' > provsioner.txt" ]
+    inline = ["touch provsioner.txt", "echo 'this is sampple' > provsioner.txt" ]
   }
+  }
+
+  resource "null_resource" "provisi" {
+      depends_on = [aws_instance.instance1]
+
+ triggers = {
+    always_run = true
+  }
+
+  connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    password = "DevOps321"
+    host     = aws_instance.instance1.public_ip
+  }
+
+  provisioner "remote-exec" {
+    inline = ["touch provsioner1.txt", "echo 'this is sampple1' > provsioner1.txt" ]
+  }
+    
   }
 
 
