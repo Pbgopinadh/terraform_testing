@@ -22,7 +22,7 @@ variable "token" {
     type     = "ssh"
     user     = "ec2-user"
     password = data.vault_generic_secret.example.data["SSH_PWD"]
-    host     = aws_instance.instance1.public_ip # we dont need data.resources if its the resources that is going to be created with the current infra code.
+    host     = "54.160.38.144" # we dont need data.resources if its the resources that is going to be created with the current infra code.
   }
 
    provisioner "remote-exec" { # remote-exec is say that the below commands should run on the remote host.
