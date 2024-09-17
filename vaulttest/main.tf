@@ -12,5 +12,7 @@ output "my_secret_value" {
   value = data.vault_generic_secret.example.data["SSH_PWD"]
 }
 
-variable "token" {}
+variable "token" {
+    default = "hvs.UdS9AFcv7b9XhLvGRVUFcexP"
+}
 
